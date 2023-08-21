@@ -1,21 +1,21 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { increment, incrementAmount } from "./features/counter/counter-slice";
+import { RootState } from "./store";
+import { useAppSelector } from "./hooks";
 
-// function App({ count, increment, incrementAmount }) {
 function App() {
-  const count = useSelector((state) => state.counter.value);
+  const count = useAppSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
 
   function handleOnclick() {
-    //   increment();
-    dispatch({ type: "counter/increment" });
+    dispatch(increment());
   }
 
   function handleOnclickAmount() {
-    //   incrementAmount(5);
-    dispatch({ type: "counter/incrementAmount", payload: 5 });
+    dispatch(incrementAmount(5));
   }
 
   return (
